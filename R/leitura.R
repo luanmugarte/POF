@@ -140,7 +140,7 @@ ler_cad_col <- function(ano) {
 #' @rdname leitura
 #' @export
 ler_desp_ind <- function(ano) {
-  stopifnot(ano %in% c(2003, 2009, 2018))
+  stopifnot(ano %in% c(2003, 2009,2017, 2018))
 
   regex_file <- stringr::regex("(?<!caderneta_)despesa(_individual)?(_s)?\\.txt",
                                ignore_case = TRUE)
