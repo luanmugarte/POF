@@ -5,7 +5,7 @@ magrittr::`%>%`
 listar_ftp <- pnadc:::listar_ftp
 
 criar_link <-  function(ano) {
-  stopifnot(ano %in% c(2003, 2009, 2018))
+  stopifnot(ano %in% c(2003, 2009,2017, 2018))
 
   inicio <- glue::glue(
     "ftp://ftp.ibge.gov.br/Orcamentos_Familiares/",
@@ -25,7 +25,7 @@ criar_link <-  function(ano) {
 #' @param ano Ano da pesquisa
 #' @export
 download_pof <- function(ano) {
-  stopifnot(ano %in% c(2003, 2009, 2018))
+  stopifnot(ano %in% c(2003, 2009,2017, 2018))
   links <- criar_link(ano)
 
   if (!dir.exists("dados")) dir.create("dados")

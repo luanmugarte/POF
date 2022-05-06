@@ -14,7 +14,7 @@ ler_pof <- function(arquivo, tamanhos, nomes) {
 #' @rdname leitura
 #' @export
 ler_morador <- function(ano) {
-  stopifnot(ano %in% c(2003, 2009, 2018))
+  stopifnot(ano %in% c(2003, 2009, 2017,2018))
 
   regex_file <- stringr::regex("morador(_s)?\\.txt", ignore_case = TRUE)
 
@@ -60,7 +60,7 @@ ler_morador <- function(ano) {
 #' @rdname leitura
 #' @export
 ler_desp_col <- function(ano) {
-  stopifnot(ano %in% c(2003, 2009, 2018))
+  stopifnot(ano %in% c(2003, 2009,2017, 2018))
 
   regex_file <- stringr::regex("(?<!caderneta_)despesa(_|s)(?!individual).*?\\.txt",
                                ignore_case = TRUE)
@@ -103,7 +103,7 @@ ler_desp_col <- function(ano) {
 #' @rdname leitura
 #' @export
 ler_cad_col <- function(ano) {
-  stopifnot(ano %in% c(2003, 2009, 2018))
+  stopifnot(ano %in% c(2003, 2009, 2017,2018))
 
   regex_file <- stringr::regex("caderneta_.+(_s)?\\.txt",
                                ignore_case = TRUE)
@@ -178,7 +178,7 @@ ler_desp_ind <- function(ano) {
 #' @rdname leitura
 #' @export
 ler_aluguel <- function(ano) {
-  stopifnot(ano %in% c(2003, 2009, 2018))
+  stopifnot(ano %in% c(2003, 2009,2017, 2018))
 
   if (ano == 2003) {
     stop("Alguel está em 'outros gastos' para 2003", call. = FALSE)
@@ -218,7 +218,7 @@ ler_aluguel <- function(ano) {
 #' @rdname leitura
 #' @export
 ler_rend_trab <- function(ano) {
-  stopifnot(ano %in% c(2003, 2009, 2018))
+  stopifnot(ano %in% c(2003, 2009, 2017,2018))
 
   regex_file <- stringr::regex("(?<!outros_|SAS/|de )rendim.+(_s)?\\.txt",
                                ignore_case = TRUE)
@@ -260,7 +260,7 @@ ler_rend_trab <- function(ano) {
 #' @rdname leitura
 #' @export
 ler_rend_outros <- function(ano) {
-  stopifnot(ano %in% c(2003, 2009, 2018))
+  stopifnot(ano %in% c(2003, 2009, 2017,2018))
 
   regex_file <- stringr::regex("outro.+(_s)?\\.txt", ignore_case = TRUE)
 
@@ -296,7 +296,7 @@ ler_rend_outros <- function(ano) {
 #' @rdname leitura
 #' @export
 ler_domicilio <- function(ano) {
-  stopifnot(ano %in% c(2003, 2009, 2018))
+  stopifnot(ano %in% c(2003, 2009,2017, 2018))
 
   regex_file <- stringr::regex("domicilio(_s)?\\.txt", ignore_case = TRUE)
 
