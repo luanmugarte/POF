@@ -14,7 +14,7 @@ ler_pof <- function(arquivo, tamanhos, nomes) {
 #' @rdname leitura
 #' @export
 ler_morador <- function(ano) {
-  stopifnot(ano %in% c(2003, 2009, 2017,2018))
+  stopifnot(ano %in% c(2003, 2009, 2018))
 
   regex_file <- stringr::regex("morador(_s)?\\.txt", ignore_case = TRUE)
 
@@ -60,7 +60,7 @@ ler_morador <- function(ano) {
 #' @rdname leitura
 #' @export
 ler_desp_col <- function(ano) {
-  stopifnot(ano %in% c(2003, 2009,2017, 2018))
+  stopifnot(ano %in% c(2003, 2009, 2018))
 
   regex_file <- stringr::regex("(?<!caderneta_)despesa(_|s)(?!individual).*?\\.txt",
                                ignore_case = TRUE)
@@ -103,7 +103,7 @@ ler_desp_col <- function(ano) {
 #' @rdname leitura
 #' @export
 ler_cad_col <- function(ano) {
-  stopifnot(ano %in% c(2003, 2009, 2017,2018))
+  stopifnot(ano %in% c(2003, 2009, 2018))
 
   regex_file <- stringr::regex("caderneta_.+(_s)?\\.txt",
                                ignore_case = TRUE)
@@ -140,7 +140,7 @@ ler_cad_col <- function(ano) {
 #' @rdname leitura
 #' @export
 ler_desp_ind <- function(ano) {
-  stopifnot(ano %in% c(2003, 2009,2017, 2018))
+  stopifnot(ano %in% c(2003, 2009, 2018))
 
   regex_file <- stringr::regex("(?<!caderneta_)despesa(_individual)?(_s)?\\.txt",
                                ignore_case = TRUE)
@@ -178,7 +178,7 @@ ler_desp_ind <- function(ano) {
 #' @rdname leitura
 #' @export
 ler_aluguel <- function(ano) {
-  stopifnot(ano %in% c(2003, 2009,2017, 2018))
+  stopifnot(ano %in% c(2003, 2009,  2018))
 
   if (ano == 2003) {
     stop("Alguel está em 'outros gastos' para 2003", call. = FALSE)
@@ -218,7 +218,7 @@ ler_aluguel <- function(ano) {
 #' @rdname leitura
 #' @export
 ler_rend_trab <- function(ano) {
-  stopifnot(ano %in% c(2003, 2009, 2017,2018))
+  stopifnot(ano %in% c(2003, 2009,  2018))
 
   regex_file <- stringr::regex("(?<!outros_|SAS/|de )rendim.+(_s)?\\.txt",
                                ignore_case = TRUE)
@@ -260,7 +260,7 @@ ler_rend_trab <- function(ano) {
 #' @rdname leitura
 #' @export
 ler_rend_outros <- function(ano) {
-  stopifnot(ano %in% c(2003, 2009, 2017,2018))
+  stopifnot(ano %in% c(2003, 2009,  2018))
 
   regex_file <- stringr::regex("outro.+(_s)?\\.txt", ignore_case = TRUE)
 
@@ -296,7 +296,7 @@ ler_rend_outros <- function(ano) {
 #' @rdname leitura
 #' @export
 ler_domicilio <- function(ano) {
-  stopifnot(ano %in% c(2003, 2009,2017, 2018))
+  stopifnot(ano %in% c(2003, 2009, 2018))
 
   regex_file <- stringr::regex("domicilio(_s)?\\.txt", ignore_case = TRUE)
 
@@ -331,6 +331,63 @@ ler_domicilio <- function(ano) {
     stringr::str_subset(regex_file) %>%
     ler_pof(tamanhos, nomes)
 }
+# domic <- ler_domicilio(2018)
+
+
+#' @rdname leitura
+#' @export
+ler_serv_nmonet_2 <- function(ano) {
+  stopifnot(ano %in% c(2018))
+  
+  regex_file <- stringr::regex("SERVICO_NAO_MONETARIO_POF2(_s)?\\.txt", ignore_case = TRUE)
+  
+  files <- dir(path = glue::glue("dados/{ano}/"), recursive = TRUE,
+               full.names = TRUE)
+  
+  
+  tamanhos <- c(2, 4, 1, 9, 2, 1, 2, 2, 7, 2, 10, 2, 2, 10, 
+                1, 12, 10, 10, 1, 2, 14, 14, 10, 5)
+  
+  nomes <- c("UF", "ESTRATO_POF", "TIPO_SITUACAO_REG",
+             "COD_UPA", "NUM_DOM", "NUM_UC", "QUADRO",
+             "SEQ", "V9001", "V9002", "V8000", "V9010",
+             "V9011", "V1904", "V1905", "DEFLATOR",
+             "V8000_DEFLA", "V1904_DEFLA", "COD_IMPUT_VALOR",
+             "FATOR_ANUALIZACAO", "PESO", "PESO_FINAL",
+             "RENDA_TOTAL","V9004")
+  
+  files %>%
+    stringr::str_subset(regex_file) %>%
+    ler_pof(tamanhos, nomes)
+}
+
+#' @rdname leitura
+#' @export
+ler_serv_nmonet_4 <- function(ano) {
+  stopifnot(ano %in% c(2018))
+  
+  regex_file <- stringr::regex("SERVICO_NAO_MONETARIO_POF4(_s)?\\.txt", ignore_case = TRUE)
+  
+  files <- dir(path = glue::glue("dados/{ano}/"), recursive = TRUE,
+               full.names = TRUE)
+  
+  
+  tamanhos <- c(2,4,1,9,2,1,2,2,2,7,2,10,2,2,
+                1,1,12,10,1,2,14,14,10,5)
+  
+  nomes <- c("UF", "ESTRATO_POF", "TIPO_SITUACAO_REG",
+             "COD_UPA", "NUM_DOM", "NUM_UC", 
+             "COD_INFORMANTE", "QUADRO", "SEQ",
+             "V9001", "V9002", "V8000", "V9010", "V9011",
+             "V4104", "V4105", "DEFLATOR", "V8000_DEFLA",
+             "COD_IMPUT_VALOR", "FATOR_ANUALIZACAO",
+             "PESO", "PESO_FINAL", "RENDA_TOTAL","V9004")
+  
+  files %>%
+    stringr::str_subset(regex_file) %>%
+    ler_pof(tamanhos, nomes)
+}
+# serv_nmonet_4 <- ler_serv_nmonet_4(2018)
 
 #' Tradutores de rendimento
 #'
